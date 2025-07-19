@@ -1,205 +1,90 @@
-// ALL VARIABLES AND DOC SELECTIONS
+let users = [
+  {
+    name: "amisha rathore",
+    pic: "https://i.pinimg.com/736x/cd/9b/1c/cd9b1cf5b96e8300751f952488d6c002.jpg",
+    bio: "silent chaos in a loud world 🌑🖤 | not for everyone",
+  },
+  {
+    name: "amita mehta",
+    pic: "https://i.pinimg.com/736x/1f/2f/85/1f2f856bf3a020ed8ee9ecb3306ae074.jpg",
+    bio: "main character energy 🎬 | coffee > everything ☕✨",
+  },
+  {
+    name: "isha oberoi",
+    pic: "https://i.pinimg.com/736x/23/48/7e/23487ef1268cfe017047a0640318c0d0.jpg",
+    bio: "walking through dreams in doc martens 💭🖤 | late night thinker",
+  },
+  {
+    name: "Ojin Oklawa",
+    pic: "https://i.pinimg.com/736x/01/be/94/01be94b0b5bf03a50b5d6c4bfec78063.jpg",
+    bio: "too glam to give a damn 💅 | filter free soul",
+  },
+  {
+    name: "diya bansal",
+    pic: "https://i.pinimg.com/736x/74/b0/67/74b067e6c5ece09d99f68c42c5f6754e.jpg",
+    bio: "a little chaos, a lot of art 🎨✨ | just vibes",
+  },
+  {
+    name: "tanay rawat",
+    pic: "https://i.pinimg.com/736x/9b/78/b9/9b78b95425278ee37e88869b8c5fb2c6.jpg",
+    bio: "don’t text, just vibe 🪩 | soft heart, sharp mind",
+  },
+  {
+    name: "mohit chhabra",
+    pic: "https://i.pinimg.com/736x/22/8b/cf/228bcf5a0800f813cd1744d4ccbf01ea.jpg",
+    bio: "aesthetic overload 📸🕊️ | living in lowercase",
+  },
+];
 
-let addNote = document.querySelector("#add-note");
-let formContainer = document.querySelector(".form-container");
-let closeForm = document.querySelector(".closeForm");
-
-const stack = document.querySelector(".stack");
-const upBtn = document.querySelector("#upBtn");
-const downBtn = document.querySelector("#downBtn");
-
-const form = document.querySelector("form");
-
-const imageUrlInput = form.querySelector(
-  "input[placeholder='https://example.com/photo.jpg']"
-);
-const fullNameInput = form.querySelector(
-  "input[placeholder='Enter full name']"
-);
-const homeTownInput = form.querySelector(
-  "input[placeholder='Enter home town']"
-);
-const purposeInput = form.querySelector(
-  "input[placeholder='e.g., Quick appointment note']"
-);
-
-const categoryRadios = form.querySelectorAll("input[name='category']");
-
-const submitButton = form.querySelector(".submit-btn");
-
-// CODE STARTS HERE
-
-function saveToLocalStorage(obj) {
-  if (localStorage.getItem("tasks") === null) {
-    let oldTasks = [];
-    oldTasks.push(obj);
-    localStorage.setItem("tasks", JSON.stringify(oldTasks));
-  } else {
-    let oldTasks = localStorage.getItem("tasks");
-    oldTasks = JSON.parse(oldTasks);
-    oldTasks.push(obj);
-    localStorage.setItem("tasks", JSON.stringify(oldTasks));
-  }
-}
-
-addNote.addEventListener("click", function () {
-  formContainer.style.display = "initial";
-});
-
-closeForm.addEventListener("click", function () {
-  formContainer.style.display = "none";
-});
-
-form.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-  const imageUrl = imageUrlInput.value.trim();
-  const fullName = fullNameInput.value.trim();
-  const homeTown = homeTownInput.value.trim();
-  const purpose = purposeInput.value.trim();
-
-  let selected = false;
-  categoryRadios.forEach(function (cat) {
-    if (cat.checked) {
-      selected = cat.value;
-    }
-  });
-
-  if (imageUrl === "") {
-    alert("Please enter an Image URL.");
-    return;
-  }
-
-  if (fullName === "") {
-    alert("Please enter your Full Name.");
-    return;
-  }
-
-  if (homeTown === "") {
-    alert("Please enter your Home Town.");
-    return;
-  }
-
-  if (purpose === "") {
-    alert("Please enter the Purpose.");
-    return;
-  }
-
-  if (!selected) {
-    alert("Please select a category");
-    return;
-  }
-
-  saveToLocalStorage({
-    imageUrl,
-    fullName,
-    purpose,
-    homeTown,
-    selected,
-  });
-
-  form.reset();
-  formContainer.style.display = "none";
-  showCards();
-});
-
-function showCards() {
-  stack.innerHTML = "";
-
-  let allTasks = JSON.parse(localStorage.getItem("tasks"));
-
-  allTasks.forEach(function (task) {
-    // Create card container
+function showUsers(arr) {
+  arr.forEach(function (user) {
+    // Create outer card div
     const card = document.createElement("div");
     card.classList.add("card");
 
-    // Avatar image
-    const avatar = document.createElement("img");
-    avatar.src = task.imageUrl;
-    avatar.alt = "profile";
-    avatar.classList.add("avatar");
-    card.appendChild(avatar);
+    // Create image
+    const img = document.createElement("img");
+    img.src = user.pic;
+    img.classList.add("bg-img");
 
-    // Name
-    const name = document.createElement("h2");
-    name.textContent = task.fullName;
-    card.appendChild(name);
+    // Create blurred-layer div
+    const blurredLayer = document.createElement("div");
+    blurredLayer.style.backgroundImage = `url(${user.pic})`;
+    blurredLayer.classList.add("blurred-layer");
 
-    // Info: Home town
-    const hometownInfo = document.createElement("div");
-    hometownInfo.classList.add("info");
+    // Create content div
+    const content = document.createElement("div");
+    content.classList.add("content");
 
-    const hometownLabel = document.createElement("span");
-    hometownLabel.textContent = "Home town";
-    const hometownValue = document.createElement("span");
-    hometownValue.textContent = task.homeTown;
+    // Create h3 and paragraph
+    const heading = document.createElement("h3");
+    heading.textContent = user.name;
 
-    hometownInfo.appendChild(hometownLabel);
-    hometownInfo.appendChild(hometownValue);
-    card.appendChild(hometownInfo);
+    const para = document.createElement("p");
+    para.textContent = user.bio;
 
-    // Info: Bookings
-    const bookingsInfo = document.createElement("div");
-    bookingsInfo.classList.add("info");
+    // Append heading and paragraph to content
+    content.appendChild(heading);
+    content.appendChild(para);
 
-    const bookingsLabel = document.createElement("span");
-    bookingsLabel.textContent = "Purpose";
-    const bookingsValue = document.createElement("span");
-    bookingsValue.textContent = task.purpose;
+    // Append all to card
+    card.appendChild(img);
+    card.appendChild(blurredLayer);
+    card.appendChild(content);
 
-    bookingsInfo.appendChild(bookingsLabel);
-    bookingsInfo.appendChild(bookingsValue);
-    card.appendChild(bookingsInfo);
-
-    // Buttons container
-    const buttonsDiv = document.createElement("div");
-    buttonsDiv.classList.add("buttons");
-
-    // Call button
-    const callBtn = document.createElement("button");
-    callBtn.classList.add("call");
-    callBtn.innerHTML = '<i class="ri-phone-line"></i> Call';
-
-    // Message button
-    const msgBtn = document.createElement("button");
-    msgBtn.classList.add("msg");
-    msgBtn.textContent = "Message";
-
-    // Append buttons
-    buttonsDiv.appendChild(callBtn);
-    buttonsDiv.appendChild(msgBtn);
-
-    // Append buttonsDiv to card
-    card.appendChild(buttonsDiv);
-
-    // Finally, add the card to the DOM (for example, inside a container)
-    document.querySelector(".stack").appendChild(card); // or any container of your choice
+    // Finally, append card to the body or any container
+    document.querySelector(".cards").appendChild(card);
   });
 }
-showCards();
 
-function updateStack() {
-  const cards = document.querySelectorAll(".stack .card");
+showUsers(users);
 
-  for (let i = 0; i < 3; i++) {
-    card.style.zIndex = 3 - i;
-    card.style.transform = `translateY(${i * 10}px) scale(${1 - i * 0.02})`;
-    card.style.opacity = `${1 - i * 0.02}`;
-  }
-}
+let inp = document.querySelector(".inp");
+inp.addEventListener("input", function () {
+  let newUsers = users.filter((user) => {
+    return user.name.startsWith(inp.value);
+  });
 
-upBtn.addEventListener("click", function () {
-  let lastChild = stack.lastElementChild;
-  if (lastChild) {
-    stack.insertBefore(lastChild, stack.firstElementChild);
-    // update
-    updateStack();
-  }
-});
-downBtn.addEventListener("click", function () {
-  const firstChild = stack.firstElementChild;
-  if (firstChild) {
-    stack.appendChild(firstChild);
-    // update
-    updateStack();
-  }
+  document.querySelector(".cards").innerHTML = "";
+  showUsers(newUsers);
 });
