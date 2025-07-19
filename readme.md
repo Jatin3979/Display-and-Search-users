@@ -1,6 +1,3 @@
-Here’s a polished, ready-to-paste full **README.md** combining both your Profile Note Manager and User Profile Viewer projects, with room for screenshots and clear instructions:
-
-```markdown
 # 📇 Profile Card Manager & User Viewer
 
 A sleek and interactive web app that allows users to create, manage, and search personal profile cards. This project features two major components:
