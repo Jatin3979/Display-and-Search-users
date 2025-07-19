@@ -1,38 +1,33 @@
-# 📇 Profile Card Manager & User Viewer
+# 🔍 Live User Profile Viewer
 
-A sleek and interactive web app that allows users to create, manage, and search personal profile cards. This project features two major components:
-
-1. 🗂️ **Profile Note Manager** – Add custom profile cards with details like name, image, hometown, and purpose.  
-2. 🔍 **User Profile Viewer** – View predefined user cards with a real-time search filter.
+A clean and interactive web app that displays user profile cards and lets you **filter them in real time** using a simple search input. Each card features a background image, a stylish blurred overlay, and a short bio.
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
-### 🗂️ Profile Note Manager
-- Add new profiles via a user-friendly popup form  
-- Fields: Image URL, Full Name, Home Town, Purpose, and Category  
-- Client-side validation for all inputs  
-- Saves data to `localStorage` for persistence  
-- Displays entries as interactive profile cards with "Call" and "Message" buttons  
-- Cards shown in a stacked layout with:  
-  - 🔼 Up / 🔽 Down buttons to navigate and reorder the stack visually  
+- 📇 **Predefined user cards** with:
+  - Profile image
+  - Name
+  - Aesthetic short bio
 
-### 🔍 User Profile Viewer
-- Displays predefined user cards with:  
-  - Background image  
-  - Blurred overlay for aesthetic  
-  - Name and bio text  
-- Real-time search bar to filter users by name  
+- 🔍 **Live search functionality**:
+  - Filters user cards **as you type**
+  - Matches based on the **start of the name**
+
+- 🎨 **Stylish card layout**:
+  - Background images with blurred overlays
+  - Smooth UI using basic CSS and JavaScript
 
 ---
 
 ## 🛠️ Tech Stack
 
-- HTML5  
-- CSS3  
-- JavaScript (Vanilla)  
-- LocalStorage (for data persistence)  
+- **HTML5**  
+- **CSS3**  
+- **JavaScript (Vanilla)**  
+
+No libraries or frameworks needed!
 
 ---
 
@@ -40,14 +35,14 @@ A sleek and interactive web app that allows users to create, manage, and search 
 
 ```
 
-/project-root
+/user-profile-viewer
 │
 ├── index.html
 ├── style.css
-├── script.js
+├── index.js
 ├── README.md
-
 ````
+
 ---
 
 ## 🧪 How to Use
@@ -55,19 +50,42 @@ A sleek and interactive web app that allows users to create, manage, and search 
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/your-username/profile-card-manager.git
+git clone https://github.com/your-username/user-profile-viewer.git
 ````
 
 2. **Open `index.html` in your browser**
-   No additional setup required — it’s a fully client-side app.
+   No setup required — works entirely in the browser.
 
 ---
 
-## 📌 TODO
+## 💡 Example Users
 
-* [ ] Add drag-and-drop support for reordering cards
-* [ ] Add category filters to the Profile Note Manager
-* [ ] Mobile responsiveness improvements
+Includes a small set of sample users with aesthetic bios and high-quality images, such as:
 
+* Amisha Rathore – "silent chaos in a loud world 🌑🖤"
+* Tanay Rawat – "don’t text, just vibe 🪩"
 
+### User Cards Layout
+
+![User Cards](images/user-cards.png)
+
+### Live Search Filtering
+
+![Live Search](images/live-search.png)
+
+---
+
+## 🔧 Customization
+
+To add or update users, simply modify the `users` array in the `script.js` file:
+
+```js
+let users = [
+  {
+    name: "Your Name",
+    pic: "your-image-url.jpg",
+    bio: "your short, aesthetic bio",
+  },
+  // add more users here
+];
 
